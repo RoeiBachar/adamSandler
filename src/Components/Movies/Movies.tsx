@@ -1,9 +1,15 @@
+import Movie from "../Movie/Movie";
 import "./Movies.css";
 
 function Movies(): JSX.Element {
     return (
         <div className="Movies">
-			movies
+            <div id="container">
+           <p>movies
+           <Movie/></p> 
+           
+            </div>
+			
         </div>
     );
 }

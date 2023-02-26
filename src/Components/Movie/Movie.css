@@ -1,0 +1,25 @@
+.Movie {
+    margin-top: 30px;
+}
+
+#movieContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+    width: 60%;
+    gap:50px;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+#movieContainer>img {
+    box-shadow: 1px 2px 23px white;
+    width: 25vh;
+    height: 40vh;
+}
+
+#movieContainer>img:hover {
+    box-shadow:  1px 3px 33px white;
+    width: 25vh;
+    height: 40vh;
+}
