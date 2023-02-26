@@ -1,0 +1,272 @@
+1. Install the Template: (REMEMBER to CHANGE all the "something" things!!)
+git clone https://github.com/Rom204/template-1.git
+
+2. Extract the template-1 folder, DELETE THE FRONTEND
+
+3. Install the package.json:
+cd backend --------> npm install
+
+4. Create new Schema in MySQL
+
+5. Change the 'mySQLdb' on in Utils/config.ts to the schema's name and change the port from 3000 to 3001;
+
+6. Create tabels in mysql and copy paste the commands to init.ts on Utils: *Example*:
+# export const createStudents = 
+ "CREATE TABLE IF NOT EXISTS students (id INT NOT NULL AUTO_INCREMENT,courseId INT NULL,first_name VARCHAR(45)
+  NULL,last_name VARCHAR(45) NULL,tel VARCHAR(45) NULL,avgGrade INT NULL, PRIMARY KEY (id))";
+# export const createClasses =
+ "CREATE TABLE IF NOT EXISTS `collage`.`course` (`id` INT NOT NULL AUTO_INCREMENT,`name` VARCHAR(45) NULL,PRIMARY KEY (`id`))";
+ 
+7. Go to the server.ts and Add the "dal_mysql.execute()" command with the inits above server.use(cors()): *Example*:
+# dal_mysql.execute(createStudents);
+# dal_mysql.execute(createClasses);
+
+**REMEMBER the imports**
+**REMEMBER to remove the "server.use("/", controller)"**
+
+8. Now check it works by 'npm run server' and refresh the tables in MySQL.
+**
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '12345678';
+flush privileges;
+**
+
+9. Create the Models (REMEMBER that these fields must match the same name of the columns in the DB table)
+
+10. Create the Logics
+
+11. Create the controllers
+  **REMEMBER to put the controllers in 'server.ts'**
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+#Example for ranges:
+--------------------
+const getSecnarioByDateRange = async (
+    dateOne,
+    dateTwo
+  ): Promise<secnarioModel[]> => {
+    const sql = `SELECT * FROM smarthome.secnario Where start_date BETWEEN '${dateOne}' AND '${dateTwo}'`;
+    const secnario_list = await dal.execute(sql);
+    return secnario_list;
+  };
+
+  router_secnario.get(
+    "/:dateOne/:dateTwo",
+    async (request: Request, response: Response, next: NextFunction) => {
+      const dateOne = request.params.dateOne;
+      const dateTwo = request.params.dateTwo;
+      response
+        .status(200)
+        .json(await secnario_logic.getSecnarioByDateRange(dateOne,dateTwo));
+    }
+  );
+  -----------------------------------------------------------------------------------------------------------------------------------------
+
+12. Check we are on the correct folder and install the react:
+  npx create-react-app frontend --template typescript
+
+13. Check we are on the correct folder and install our utlis:
+npm install @types/react-router-dom react-router-dom axios react-hook-form
+
+14. Delete "Apps" and create our components:
+  create fc Main
+  create fc Add
+  create fc Routing
+  create fc Header
+
+15. Go to 'index.tsx' and change the root.render to:
+  <BrowserRouter>
+  <Routing/>
+  </BrowserRouter>
+
+16. On 'Routing.tsx':
+            <Routes>
+                <Route path="/" element={<Main/>}/>
+                <Route path="/add" element={<Add/>}/>
+                <Route path="/add/:id" element={<Add/>}/>
+                <Route path="*" element={<Main/>}/>
+            </Routes>
+17. On "Header.tsx":
+            <h1>Students</h1>
+            <br/><br/>
+            <NavLink to="/">Main</NavLink>    
+            <span> | </span>
+            <NavLink to="/add">Add</NavLink>
+            <hr/>
+
+17. Create 'Model' folder in 'src' and copy the models from the backend
+
+18. On 'index.css':
+              html,body,#root{
+              margin:0;
+              padding: 0;
+              text-align: center;
+              height:100%;
+              background-image: linear-gradient(white,grey);
+              font-family: Arial, Helvetica, sans-serif;
+            }
+
+19. On 'Main.css':
+              .Main > table {
+                margin:50px auto;
+              }
+
+              .Main Table, .Main th, .Main td{
+                  border:1px solid;
+                  border-collapse: collapse;
+                  padding: 10px;
+              }
+
+              .Main tr:nth-child(even){
+                  background-color: lightblue;
+              }
+
+              .Main tr:nth-child(odd){
+                  background-color: lightgreen;
+              }
+
+              .Main thead tr:first-child{
+                  background-color: lightgray;
+              }
+20. On 'Main.tsx' we need to save our data on virtual dom so we use 'useState':
+              const [students,setStudents]=useState<Student[]>([]);
+
+21. On 'Main.tsx' we need the use 'useEffect' to get the axios:
+              useEffect(()=>{
+                axios.get("http://localhost:3001/student/all")
+                .then(response=>setStudents(response.data));
+              },[])
+
+22. And then we can create our table:
+              <Header/>
+              <table>
+                  <thead>
+                      <tr>
+                          <th>id</th>
+                          <th>course</th>
+                          <th>first name</th>
+                          <th>last name</th>
+                          <th>tel</th>
+                          <th>grade</th>                       
+                          <th>delete</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {students.map(item=>
+                          <tr key={item.id}>
+                              <td>{item.id}</td>
+                              <td>{item.courseId}</td>
+                              <td>{item.first_name}</td>
+                              <td>{item.last_name}</td>
+                              <td>{item.tel}</td>
+                              <td>{item.avgGrade}</td>
+                              <td><button onClick={()=>{
+                                  axios.delete(`http://localhost:3001/student/${item.id}`);
+                                  setStudents(students.filter(singleStudent=>singleStudent.id !== item.id));
+                              }}>❌</button></td>
+                          </tr>
+                          )}
+                  </tbody>
+              </table>
+
+23. On 'Add.css':
+                .Add {
+                  
+                }
+
+                .Box {
+                    width:300px;
+                    text-align: left;
+                    margin:50px auto;
+                    border:1px solid;
+                    padding: 10px;
+                    border-radius: 10px;
+                    box-shadow: 10px 10px 10px;
+                }
+
+                .Add input, .Add select, .Add button{
+                    width: 100%;
+                    margin-bottom: 20px;
+                    box-sizing: border-box;
+                }
+
+24. On 'Add.tsx' we need to save our courses data on virtual dom so we use 'useState': 
+*******FOR SELECT INPUT*******
+                const [courses, setCourses] = useState<CourseModel[]>([]);
+
+25. On 'Add.tsx' we need the use 'useEffect' to get the axios:
+*******FOR SELECT INPUT*******
+                useEffect(() => {
+                  axios
+                    .get("http://localhost:3001/student/courses")
+                    .then((response) => setCourses(response.data));
+                }, []);
+
+26. On 'Add.tsx' we create form to add data for post:
+                const { register, handleSubmit } = useForm<StudentModel>();
+                const navigate = useNavigate();
+
+27.  On 'Add.tsx' we need to create the Add function:          
+                const send = async (newStudent: StudentModel) => {
+                  try {
+                    await axios
+                      .post("http://localhost:3001/student/add", newStudent)
+                      .then((res) => navigate("/"));
+                  } catch (err: any) {
+                    console.log(err.message);
+                  }
+                };   
+28. The form need to look like that:
+                <Header />
+                <div className="Box">
+                  <form onSubmit={handleSubmit(send)}>
+                    <h2>Add Student</h2>
+
+                    <label>Course</label>
+                    <select
+                      style={{ height: 30 }}
+                      {...register("courseId", { required: true })}
+                    >
+                      <option disabled value="">
+                        Select course...
+                      </option>
+                      {courses.map((item) => (
+                        <option key={item.id} value={item.id}>
+                          {item.name}
+                        </option>
+                      ))}
+                    </select>
+                    <label>First name:</label>
+                    <input type="text" {...register("first_name", { required: true })} />
+                    <label>Last name:</label>
+                    <input type="text" {...register("last_name", { required: true })} />
+                    <label>Tel:</label>
+                    <input type="text" {...register("tel")} />
+                    <label>Avg grade:</label>
+                    <input type="number" {...register("avgGrade", { required: true })} />
+                    <input
+                      type="submit"
+                      value="save student"
+                      style={{
+                        height: 50,
+                        backgroundColor: "lightgreen",
+                        borderRadius: 20,
+                      }}
+                    />
+                  </form>
+                </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+

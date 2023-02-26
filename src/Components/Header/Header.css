@@ -1,0 +1,28 @@
+.Header {
+}
+
+#title {
+    font-size: 10vh;
+    font-weight: bolder;
+    text-align: center;
+    text-transform: uppercase;
+    color:  rgba(220, 188, 5, 0.367);
+    letter-spacing: 2px;
+    margin-top: 50px;
+    position: absolute;
+    top: 39%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 0px 8px  rgba(220, 188, 5, 0.367);;
+}
+
+#container {
+    position: relative;
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.25);
+}
+
+.coverPhoto {
+    width: 100%;
+    display: block;
+    opacity: 20%;
+}

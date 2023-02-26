@@ -1,0 +1,38 @@
+.Biography {
+    margin-top: 50px;
+    padding-top: 5px;
+    box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.25);
+    
+}
+
+#bioContainer {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 15px 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+.bioImage {
+    border-radius: 20%;
+    margin-left: 16vh;
+    width: 50%;
+    height: 60%;
+    box-shadow: 1px 5px 5px  rgba(220, 188, 5, 0.367);;
+}
+
+#bioImage {
+    width: 80%;
+    margin-right: 40px;
+}
+
+#bioInfo{
+    width: 50%;
+    margin-left: 20%;
+    font-size: 3vh;
+    
+}
+#bioInfo >h2{
+   color: rgba(220, 188, 5, 0.367);
+    
+}
