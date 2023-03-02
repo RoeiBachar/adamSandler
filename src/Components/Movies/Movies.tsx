@@ -43,7 +43,7 @@ function Movies(): JSX.Element {
       <div id="containerMovies">
         <p>
           {getter?.map((item) => (
-            <img id="movie_img" width={400} height={600} src={item.img} />
+           <Movie title={item.title} imdb={item.imdb} img={item.img} year={item.year} description={item.description}/>
           ))}
         </p>
       </div>

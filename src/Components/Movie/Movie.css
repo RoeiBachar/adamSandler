@@ -5,21 +5,33 @@
 #movieContainer {
     display: flex;
     justify-content: center;
-    margin-top: 35px;
     width: 60%;
-    gap:50px;
     flex-wrap: wrap;
     margin: auto;
 }
 
 #movieContainer>img {
+    position: relative;
     box-shadow: 1px 2px 23px white;
-    width: 25vh;
-    height: 40vh;
+    width: 35vh;
+    height: 50vh;
 }
 
-#movieContainer>img:hover {
+img:hover #info{
     box-shadow:  1px 3px 33px white;
-    width: 25vh;
-    height: 40vh;
+    display: block;
+}
+#movieContainer:hover>img{
+    opacity: 20%;
+}
+
+#info {
+    display: none;
+    font-size: 23px;
+    position: absolute;
+    width: 20%;
+    height: 50%;
+
+    color:green
+    
 }
