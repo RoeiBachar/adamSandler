@@ -1,4 +1,4 @@
-#container {
+#containerMovies {
     position: relative;
     background-image: url("https://people.com/thmb/JmoQrehB6kRB5iR0gi286m10gR4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(999x0:1001x2)/adam-jackie-sandler-kids-5988499a3fec44b5a6bfe3597a94495c.jpg");
     background-repeat: no-repeat;
@@ -6,7 +6,7 @@
     height: 100vh;
   }
   
-  #container::before {
+  #containerMovies::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -15,7 +15,7 @@
     opacity: 0.90; /* set the opacity level here */
   }
   
-  #container > p {
+  #containerMovies > p {
     position: relative;
     text-align: center;
    font-size: 50px;
@@ -23,4 +23,15 @@
     font-weight: bolder;
     margin: 0;
   }
-  
+
+  #movie_img{
+    box-shadow: 1px 6px 23px white;
+    margin: 20px;
+
+  }
+  #movie_img:hover{
+    box-shadow: 1px 26px 23px white;
+    margin: 20px;
+    opacity: 55%;
+
+  }

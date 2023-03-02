@@ -1,6 +1,17 @@
 import "./Movie.css";
+import firebase from 'firebase/app';
+import 'firebase/database';
 
 function Movie(): JSX.Element {
+    // const firebaseConfig = {
+    //     // Your Firebase project configuration
+    //   };
+      
+    //   firebase.initializeApp(firebaseConfig);
+      
+    //   const db = firebase.database();
+
+
   return (
     <div className="Movie">
       <div id="movieContainer">
