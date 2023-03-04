@@ -11,9 +11,12 @@ import {
   collection,
   getDocs,
 } from "firebase/firestore";
+import { Stack, Autocomplete, TextField } from "@mui/material";
+import { title } from "process";
 
 function Movies(): JSX.Element {
   const [getter, setter] = useState<movieInterface[]>();
+
   const db = getFirestore(app);
 
   const getMovies = async () => {
@@ -29,16 +32,29 @@ function Movies(): JSX.Element {
         year: item.year,
       };
     });
-
+    myMovies.sort(compareYears);
     setter(myMovies);
   };
 
+  const compareYears = (a: movieInterface, b: movieInterface) => {
+    return b.year - a.year;
+  };
   useEffect(() => {
     getMovies();
+    window.scrollTo(0, 0);
   }, []);
 
   return (
     <div className="Movies">
+      <Stack spacing={2} sx={{ width: 500 }}>
+        <Autocomplete
+          style={{ backgroundColor: "white" }}
+          id="free-solo-demo"
+          freeSolo
+          options={getter ? getter.map((option) => option.title) : []}
+          renderInput={(params) => <TextField {...params} label="freeSolo" />}
+        />
+      </Stack>
       <div id="containerMovies">
         <div id="what">
           {getter?.map((item, index) => (

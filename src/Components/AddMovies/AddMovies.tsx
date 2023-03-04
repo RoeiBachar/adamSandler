@@ -34,12 +34,13 @@ function AddMovies(): JSX.Element {
         <input type="text" {...register("title", { required: true })} />
         <label>year</label>
         <input type="number" {...register("year", { required: true })} />
+        <label>img:</label>
+        <input type="text" {...register("img", { required: true })} />
         <label>description:</label>
         <input type="text" {...register("description")} />
         <label>imdb:</label>
         <input type="number" step="0.01"{...register("imdb", { required: true })} />
-        <label>img:</label>
-        <input type="text" {...register("img", { required: true })} />
+        
         <input
           type="submit"
           value="Add Movie"
