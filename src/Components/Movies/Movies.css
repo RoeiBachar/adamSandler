@@ -1,31 +1,33 @@
-#containerMovies {
-    position: relative;
-    background-image: url("https://people.com/thmb/JmoQrehB6kRB5iR0gi286m10gR4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(999x0:1001x2)/adam-jackie-sandler-kids-5988499a3fec44b5a6bfe3597a94495c.jpg");
+
+.Movies{
+    height: 500vh;
+    background-image: url("https://images7.alphacoders.com/818/818954.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
-   
+    position: relative;
+}
+#containerMovies {
+    
+   display:flex;
+   justify-content: space-around;
   }
   
-  #containerMovies::before {
+  .Movies::before {
     content: "";
     position: absolute;
     width: 100%;
     height: 100%;
     background-color: black;
-    opacity: 0.90;
+    opacity: 80%;
     display: flex;
     justify-content: space-between;
   }
-  
-  #containerMovies > p {
-    position: relative;
-    text-align: center;
-   font-size: 50px;
-    color: white;
-    font-weight: bolder;
-    margin: 0;
-    
-  }
 
- 
+ #what{
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 85%; 
+ }
+
