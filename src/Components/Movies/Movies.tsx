@@ -2,7 +2,7 @@ import axios from "axios";
 import Movie from "../Movie/Movie";
 import "./Movies.css";
 import { app } from "../../Firebase/firebase";
-import { useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { movieInterface } from "../../Interfaces/movieInterface";
 import {
   doc,
@@ -16,6 +16,7 @@ import { title } from "process";
 
 function Movies(): JSX.Element {
   const [getter, setter] = useState<movieInterface[]>();
+  const [updatedMovies, setUpdate] = useState<movieInterface[]>();
 
   const db = getFirestore(app);
 
@@ -33,6 +34,7 @@ function Movies(): JSX.Element {
       };
     });
     myMovies.sort(compareYears);
+    setUpdate(myMovies);
     setter(myMovies);
   };
 
@@ -44,20 +46,36 @@ function Movies(): JSX.Element {
     window.scrollTo(0, 0);
   }, []);
 
+  const todo = (data: SyntheticEvent) => {
+    const movieName = (data.target as HTMLInputElement).textContent;
+    console.log(movieName);
+    const newArray = getter?.filter((item) => movieName == item.title);
+    setUpdate(newArray);
+    console.log(newArray);
+    if (!newArray?.length) {
+      setUpdate(getter);
+    }
+  };
   return (
     <div className="Movies">
-      <Stack spacing={2} sx={{ width: 500 }}>
-        <Autocomplete
-          style={{ backgroundColor: "white" }}
-          id="free-solo-demo"
-          freeSolo
-          options={getter ? getter.map((option) => option.title) : []}
-          renderInput={(params) => <TextField {...params} label="freeSolo" />}
-        />
-      </Stack>
+      <div id="searchingContainer">
+        <Stack spacing={2} sx={{ width: 500 }}>
+          <Autocomplete
+            onChange={(e) => {
+              todo(e);
+            }}
+            id="free-solo-demo"
+            freeSolo
+            options={getter ? getter.map((option) => option.title) : []}
+            renderInput={(params) => (
+              <TextField {...params} label="Search Movie" />
+            )}
+          />
+        </Stack>
+      </div>
       <div id="containerMovies">
-        <div id="what">
-          {getter?.map((item, index) => (
+        <div id="gallaryMovies">
+          {updatedMovies?.map((item, index) => (
             <Movie key={index} {...item} />
           ))}
         </div>

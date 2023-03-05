@@ -1,18 +1,18 @@
-
-.Movies{
+.Movies {
     height: 700vh;
     background-image: url("https://images7.alphacoders.com/818/818954.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
 }
+
 #containerMovies {
-    
-   display:flex;
-   justify-content: space-around;
-  }
-  
-  .Movies::before {
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.Movies::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -21,13 +21,18 @@
     opacity: 80%;
     display: flex;
     justify-content: space-between;
-  }
+}
 
- #what{
+#gallaryMovies {
     margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    width: 85%; 
- }
+    width: 85%;
+}
 
+#searchingContainer {
+    display:flex;
+ justify-content: center;
+ padding-top: 40px;
+}
