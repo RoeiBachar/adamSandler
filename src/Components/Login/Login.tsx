@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { movieInterface } from "../../Interfaces/movieInterface";
 import "./Login.css";
 import { loginInterface } from "../../Interfaces/loginInterface";
+import { NavLink, Navigate } from "react-router-dom";
 
 function Login(): JSX.Element {
   const { register, handleSubmit } = useForm<loginInterface>();
@@ -18,7 +19,6 @@ function Login(): JSX.Element {
   return (
     <div className="Login">
       <div id="loginContainer">LOGIN</div>
-
       <div id="inputs">
         <form onSubmit={handleSubmit(send)}>
           <label>Username:</label>
@@ -30,6 +30,7 @@ function Login(): JSX.Element {
           />
           <input id="loginImage" type="submit" value="" />
         </form>
+        <p id="registerNavigate"><NavLink to="/register">NOT REGISTERED YET?</NavLink></p>
       </div>
     </div>
   );

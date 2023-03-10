@@ -4,6 +4,7 @@ import "./Routing.css";
 import Movies from "../Movies/Movies";
 import AddMovies from "../AddMovies/AddMovies";
 import Login from "../Login/Login";
+import Register from "../Register/Register";
 
 function Routing(): JSX.Element {
     return (
@@ -11,6 +12,7 @@ function Routing(): JSX.Element {
 			<Routes>
                 <Route path="/" element={<Login/>}/>
                 <Route path="/movies" element={<Movies/>}/>
+                <Route path="/register" element={<Register/>}/>
                 <Route path="/AddMovies" element={<AddMovies/>}/>
                 
                 <Route path="*" element={<Main/>}/>

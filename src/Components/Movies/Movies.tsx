@@ -35,9 +35,8 @@ function Movies(): JSX.Element {
       };
     });
     myMovies.sort(compareYears);
-    console.log("ohhh why againnn")
 
-    sessionStorage.setItem("data",JSON.stringify(myMovies));
+    sessionStorage.setItem("data", JSON.stringify(myMovies));
 
     setUpdate(myMovies);
     setter(myMovies);
@@ -49,20 +48,14 @@ function Movies(): JSX.Element {
   useEffect(() => {
     window.scrollTo(0, 0);
     const data = sessionStorage.getItem("data");
-    
-    if (!data){
-        getMovies();
-        
-    }
-    else{
-        console.log("not nowwww")
 
-        const newData= JSON.parse(data)
-        setUpdate(newData);
-        setter(newData);
+    if (!data) {
+      getMovies();
+    } else {
+      const newData = JSON.parse(data);
+      setUpdate(newData);
+      setter(newData);
     }
-
-   
   }, []);
 
   const todo = (data: SyntheticEvent) => {

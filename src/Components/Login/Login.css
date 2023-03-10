@@ -6,13 +6,10 @@
     font-weight: bolder;
     text-align: center;
     text-shadow: 1px 1px 1px grey;
-
-
 }
 
 #loginContainer {
     border: solid 2px saddlebrown;
-
 }
 
 #inputs>form {
@@ -26,6 +23,7 @@
 
 #inputs>input {
     width: 50px;
+    text-decoration: none;
 }
 
 #loginImage {
@@ -35,4 +33,10 @@
     background-color: black;
     background-repeat: no-repeat;
     margin: auto;
+
+}
+
+p>a {
+    color: rgba(220, 188, 5, 0.367);
+    text-decoration: none;
 }
