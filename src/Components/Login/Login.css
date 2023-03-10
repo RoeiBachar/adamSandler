@@ -1,7 +1,7 @@
 .Login {
-	background-color: black;
+    background-color: black;
     height: 100vh;
-    color:  rgba(220, 188, 5, 0.367);
+    color: rgba(220, 188, 5, 0.367);
     font-size: 50px;
     font-weight: bolder;
     text-align: center;
@@ -10,11 +10,12 @@
 
 }
 
-#loginContainer{
+#loginContainer {
     border: solid 2px saddlebrown;
-    
+
 }
-#inputs >form{
+
+#inputs>form {
     background-color: black;
     width: 530px;
     display: flex;
@@ -22,12 +23,16 @@
     margin: auto;
 
 }
-#inputs >input{
-width: 50px;
+
+#inputs>input {
+    width: 50px;
 }
-#loginImage{
+
+#loginImage {
     background-image: url("https://tiermaker.com/images/templates/scenes-from-click-2006-795430/7954301612003554.png");
     width: 53vh;
-    height: 30vh;
+    height: 33vh;
     background-color: black;
+    background-repeat: no-repeat;
+    margin: auto;
 }

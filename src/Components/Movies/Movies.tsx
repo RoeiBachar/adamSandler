@@ -13,6 +13,7 @@ import {
 } from "firebase/firestore";
 import { Stack, Autocomplete, TextField } from "@mui/material";
 import { title } from "process";
+import { json } from "stream/consumers";
 
 function Movies(): JSX.Element {
   const [getter, setter] = useState<movieInterface[]>();
@@ -34,6 +35,10 @@ function Movies(): JSX.Element {
       };
     });
     myMovies.sort(compareYears);
+    console.log("ohhh why againnn")
+
+    sessionStorage.setItem("data",JSON.stringify(myMovies));
+
     setUpdate(myMovies);
     setter(myMovies);
   };
@@ -42,8 +47,22 @@ function Movies(): JSX.Element {
     return b.year - a.year;
   };
   useEffect(() => {
-    getMovies();
     window.scrollTo(0, 0);
+    const data = sessionStorage.getItem("data");
+    
+    if (!data){
+        getMovies();
+        
+    }
+    else{
+        console.log("not nowwww")
+
+        const newData= JSON.parse(data)
+        setUpdate(newData);
+        setter(newData);
+    }
+
+   
   }, []);
 
   const todo = (data: SyntheticEvent) => {
