@@ -12,8 +12,6 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { Stack, Autocomplete, TextField } from "@mui/material";
-import { title } from "process";
-import { json } from "stream/consumers";
 
 function Movies(): JSX.Element {
   const [getter, setter] = useState<movieInterface[]>();
@@ -25,7 +23,7 @@ function Movies(): JSX.Element {
     const moviesCollection = await collection(db, "movies");
     const movieColumn = await getDocs(moviesCollection);
     const movies = movieColumn.docs.map((doc) => doc.data());
-    const myMovies: movieInterface[] = movies.map((item: any) => {
+    const myMovies: movieInterface[] = movies.map((item) => {
       return {
         title: item.title,
         imdb: item.imdb,
@@ -35,9 +33,7 @@ function Movies(): JSX.Element {
       };
     });
     myMovies.sort(compareYears);
-
     sessionStorage.setItem("data", JSON.stringify(myMovies));
-
     setUpdate(myMovies);
     setter(myMovies);
   };

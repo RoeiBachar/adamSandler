@@ -20,7 +20,7 @@ function Register(): JSX.Element {
       <div id="registerContainer">Register</div>
       <div id="inputs">
         <form onSubmit={handleSubmit(send)}>
-        <label>First Name</label>
+          <label>First Name</label>
           <input
             type="string"
             {...register("first_name", { required: true })}
@@ -32,7 +32,7 @@ function Register(): JSX.Element {
             type="password"
             {...register("password", { required: true })}
           />
-          
+
           <input id="loginImage" type="submit" value="" />
         </form>
         <p id="registerNavigate">

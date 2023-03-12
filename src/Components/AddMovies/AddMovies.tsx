@@ -13,6 +13,8 @@ function AddMovies(): JSX.Element {
     const { v4: uuidv4 } = require('uuid');
     
     const db = getFirestore(app);
+    
+
 
   const { register, handleSubmit } = useForm<movieInterface>();
 
