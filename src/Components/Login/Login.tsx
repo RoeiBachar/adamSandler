@@ -15,48 +15,55 @@ import { loginInterface } from "../../Interfaces/loginInterface";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import { app } from "../../Firebase/firebase";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../Redux/store";
+import { send } from "process";
+import { updateUserData } from "../../Redux/features/dataSlice";
+import { userInterface } from "../../Interfaces/userInterface";
 
 function Login(): JSX.Element {
   const [getErr, setErr] = useState("");
   const navigate = useNavigate();
-
+  const userData = useSelector((state: RootState) => state.userDataState);
+  const dispatch = useDispatch();
   const { register, handleSubmit } = useForm<loginInterface>();
   const db = getFirestore(app);
 
   const send = async (data: loginInterface) => {
     try {
-      console.log(data);
       checkUsers(data);
     } catch (error) {
       console.log(error);
     }
   };
+
   const checkUsers = async (data: loginInterface) => {
     const usersCollection = await collection(db, "users");
     const userColumn = await getDocs(usersCollection);
-    const users = userColumn.docs.map((doc) => doc.data());
+    const usersDocs = userColumn.docs.map((doc) => doc.data());
+
     const q = query(usersCollection, where("username", "==", data.username));
     const querySnapshot = await getDocs(q);
-     const docId =  querySnapshot.docs[0].id;
-     console.log(docId);
-    const normalUser = users.filter(
-      (item) =>
-        item.username === data.username && item.password === data.password
-    );
-    const myUsers: loginInterface[] = normalUser.map((item) => {
-      return {
-        username: item.username,
-        password: item.password,
-        first_name: item.first_name,
-        favorites: item.favorites,
-      };
-    });
-    console.log(myUsers);
+    const docId = querySnapshot.docs[0].id;
+    const loggedInUser = usersDocs.find((userDoc) => {
+      if (
+        userDoc.username === data.username &&
+        userDoc.password === data.password
+      ) {
+        const userData: userInterface = {
+          username: userDoc.username,
+          password: userDoc.password,
+          first_name: userDoc.first_name,
+          favorites: userDoc.favorites,
+        };
+        return userData;
+      } else {
+        return undefined;
+      }
+    }) as userInterface | undefined;
 
-    const isUserExists = myUsers.some(
-      (obj) => obj.username === data.username && obj.password === data.password
-    );
-    if (isUserExists) {
+    if (loggedInUser) {
+      dispatch(updateUserData(loggedInUser));
       navigate("/main");
     } else {
       setErr("הנתונים שגויים");
