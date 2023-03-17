@@ -36,13 +36,12 @@ function Login(): JSX.Element {
     }
   };
 
-  const checkUsers = async (data: loginInterface) => {
+    const checkUsers = async (data: loginInterface) => {
     const usersCollection = await collection(db, "users");
     const userColumn = await getDocs(usersCollection);
     const usersDocs = userColumn.docs.map((doc) => doc.data());
-
-    const q = query(usersCollection, where("username", "==", data.username));
-    const querySnapshot = await getDocs(q);
+    const queryDocs = query(usersCollection, where("username", "==", data.username));
+    const querySnapshot = await getDocs(queryDocs);
     const docId = querySnapshot.docs[0]?.id;
     console.log(docId);
     

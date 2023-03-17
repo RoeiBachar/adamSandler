@@ -11,7 +11,6 @@ import {
 } from "firebase/firestore";
 function AddMovies(): JSX.Element {
     const { v4: uuidv4 } = require('uuid');
-    
     const db = getFirestore(app);
     
 

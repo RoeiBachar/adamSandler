@@ -1,18 +1,47 @@
 import { useForm } from "react-hook-form";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { loginInterface } from "../../Interfaces/loginInterface";
 import { registerInterface } from "../../Interfaces/registerInterface copy";
 import "./Register.css";
+import {
+  setDoc,
+  doc,
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  where,
+  updateDoc,
+} from "@firebase/firestore";
+import { app } from "../../Firebase/firebase";
+import { useEffect, useState } from "react";
 
 function Register(): JSX.Element {
+  const navigate = useNavigate();
+  const [getErr, setErr] = useState("");
   const { register, handleSubmit } = useForm<registerInterface>();
+  const { v4: uuidv4 } = require("uuid");
+  const db = getFirestore(app);
   const send = async (data: registerInterface) => {
-    try {
-      console.log(data);
-      // const result = await setDoc(doc(db, "movies", uuidv4()), data);
-      // console.log(result);
-    } catch (error) {
-      console.log(error);
+    const newData = { ...data, favorites: [] };
+    const usersCollection = await collection(db, "users");
+    const userColumn = await getDocs(usersCollection);
+    const usersDocs = userColumn.docs.map((doc) => doc.data());
+    console.log(usersDocs);
+    const isUserExist = usersDocs.filter(
+      (userDoc) => userDoc.username === newData.username
+    );
+
+    if (isUserExist.length == 0) {
+      try {
+        const result = await setDoc(doc(db, "users", uuidv4()), newData);
+        console.log(result);
+        navigate("/");
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      setErr("כבר קיים שם משתמש כזה");
     }
   };
   return (
@@ -26,6 +55,7 @@ function Register(): JSX.Element {
             {...register("first_name", { required: true })}
           />
           <label>Username:</label>
+          <h2>{getErr}</h2>
           <input type="text" {...register("username", { required: true })} />
           <label>Password</label>
           <input
