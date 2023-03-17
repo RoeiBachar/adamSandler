@@ -4,17 +4,29 @@ import Biography from "../Biography/Biography";
 import Header from "../Header/Header";
 import Pictures from "../Pictures/Pictures";
 import "./Main.css";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function Main(): JSX.Element {
-    const userData = useSelector((state: RootState) => state.userDataState)
-  console.log(userData);
-    return (
-        <div className="Main">
-            <Header/>
-            <Pictures/>
-            <Biography/>
-        </div>
-    );
+  const userDataName = useSelector(
+    (state: RootState) => state.userDataState.user
+  );
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!userDataName) {
+      navigate("/");
+    }
+  }),
+    [];
+
+  return (
+    <div className="Main">
+      <Header />
+      <Pictures />
+      <Biography />
+    </div>
+  );
 }
 
 export default Main;

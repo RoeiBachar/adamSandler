@@ -24,7 +24,6 @@ import { userInterface } from "../../Interfaces/userInterface";
 function Login(): JSX.Element {
   const [getErr, setErr] = useState("");
   const navigate = useNavigate();
-  const userData = useSelector((state: RootState) => state.userDataState);
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm<loginInterface>();
   const db = getFirestore(app);
@@ -44,18 +43,23 @@ function Login(): JSX.Element {
 
     const q = query(usersCollection, where("username", "==", data.username));
     const querySnapshot = await getDocs(q);
-    const docId = querySnapshot.docs[0].id;
+    const docId = querySnapshot.docs[0]?.id;
+    console.log(docId);
+    
     const loggedInUser = usersDocs.find((userDoc) => {
       if (
         userDoc.username === data.username &&
         userDoc.password === data.password
       ) {
         const userData: userInterface = {
+          id:docId,
           username: userDoc.username,
           password: userDoc.password,
           first_name: userDoc.first_name,
           favorites: userDoc.favorites,
         };
+        console.log(userData);
+        
         return userData;
       } else {
         return undefined;

@@ -12,13 +12,18 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { Stack, Autocomplete, TextField } from "@mui/material";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Redux/store";
 
 function Movies(): JSX.Element {
   const [getter, setter] = useState<movieInterface[]>();
   const [updatedMovies, setUpdate] = useState<movieInterface[]>();
-
+  const userDataFavorites = useSelector((state: RootState) => state.userDataState.user?.favorites);
+    console.log(userDataFavorites);
   const db = getFirestore(app);
-
+  const checkFavorite=()=>{
+    userDataFavorites
+  }
   const getMovies = async () => {
     const moviesCollection = await collection(db, "movies");
     const movieColumn = await getDocs(moviesCollection);
