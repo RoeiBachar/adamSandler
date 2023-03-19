@@ -36,29 +36,26 @@ function Login(): JSX.Element {
     }
   };
 
-    const checkUsers = async (data: loginInterface) => {
+  const checkUsers = async (data: loginInterface) => {
     const usersCollection = await collection(db, "users");
     const userColumn = await getDocs(usersCollection);
     const usersDocs = userColumn.docs.map((doc) => doc.data());
-    const queryDocs = query(usersCollection, where("username", "==", data.username));
-    const querySnapshot = await getDocs(queryDocs);
-    const docId = querySnapshot.docs[0]?.id;
-    console.log(docId);
     
+
     const loggedInUser = usersDocs.find((userDoc) => {
       if (
         userDoc.username === data.username &&
         userDoc.password === data.password
       ) {
         const userData: userInterface = {
-          id:docId,
+          id: userDoc.id,
           username: userDoc.username,
           password: userDoc.password,
           first_name: userDoc.first_name,
           favorites: userDoc.favorites,
         };
         console.log(userData);
-        
+
         return userData;
       } else {
         return undefined;

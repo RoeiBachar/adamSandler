@@ -23,18 +23,17 @@ function Register(): JSX.Element {
   const { v4: uuidv4 } = require("uuid");
   const db = getFirestore(app);
   const send = async (data: registerInterface) => {
-    const newData = { ...data, favorites: [] };
+    const id = uuidv4();
+    const newData = { ...data, favorites: [], id: id };
     const usersCollection = await collection(db, "users");
     const userColumn = await getDocs(usersCollection);
     const usersDocs = userColumn.docs.map((doc) => doc.data());
-    console.log(usersDocs);
-    const isUserExist = usersDocs.filter(
-      (userDoc) => userDoc.username === newData.username
-    );
+    const isUserExist = await getDocs(query(usersCollection, where("username", "==", newData.username)));
 
-    if (isUserExist.length == 0) {
+   
+    if (isUserExist.empty) {
       try {
-        const result = await setDoc(doc(db, "users", uuidv4()), newData);
+        const result = await setDoc(doc(db, "users", id), newData);
         console.log(result);
         navigate("/");
       } catch (error) {

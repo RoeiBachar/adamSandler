@@ -6,7 +6,10 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { useState } from "react";
 function Movie(props: movieInterface): JSX.Element {
+  const { isFavorite, id } = props;
+  const { handleFavorite } = props;
   const [getFav, setFav] = useState(true);
+  console.log(isFavorite);
 
   return (
     <div className="Movie">
@@ -24,9 +27,13 @@ function Movie(props: movieInterface): JSX.Element {
               height={30}
             />
           </span>
-          <div>
-            ?
-            {<BookmarkBorderIcon fontSize="large" />}:</div>
+          <div onClick={()=>{handleFavorite && handleFavorite(id, !isFavorite)}}>
+            {isFavorite ? (
+              <BookmarkIcon  />
+            ) : (
+              <BookmarkBorderIcon fontSize="large" />
+            )}
+          </div>
         </div>
       </div>
     </div>
