@@ -7,6 +7,7 @@ import { movieInterface } from "../../Interfaces/movieInterface";
 import {
   doc,
   setDoc,
+  updateDoc,
   getFirestore,
   collection,
   getDocs,
@@ -20,38 +21,44 @@ import { RootState } from "../../Redux/store";
 function Movies(): JSX.Element {
   const [movies, setMovies] = useState<movieInterface[]>([]);
   const [updatedMovies, setUpdate] = useState<movieInterface[]>();
-  const userData = useSelector(
-    (state: RootState) => state.userDataState.user
-  );
+  const userData = useSelector((state: RootState) => state.userDataState.user);
   console.log(userData);
   const db = getFirestore(app);
 
-  const handleFavoriteOnFireBase=async(userId:string,movieId:string)=>{
-    const userDocRef = doc(db, "users", userId);
-    let updatedUserData= {
-        ...userData
-     };
-     updatedUserData.favorites?.push(movieId)
-    console.log(updatedUserData)
+  const handleFavoriteOnFireBase = async (movieId: string) => {
+    if (userData) {
+      const userDocRef = doc(db, "users", userData.id);
+      const updatedUserData = { ...userData };
+      const favorites = [...updatedUserData.favorites];
+      favorites.push(movieId);
 
-  }
+      try {
+        await updateDoc(userDocRef, {
+          ...updatedUserData,
+          favorites,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
   const handleFavorite = (movieId: string, isFavorite: boolean) => {
     console.log(`${movieId}:`, isFavorite);
     let updatedMovies = [...movies];
-    updatedMovies = updatedMovies.map(movie => {
+    updatedMovies = updatedMovies.map((movie) => {
       if (movie.id === movieId) {
         return {
           ...movie,
-          isFavorite
-        }
+          isFavorite,
+        };
       }
       return {
-        ...movie
-      }
-    })
+        ...movie,
+      };
+    });
     setUpdate(updatedMovies as movieInterface[]);
-    handleFavoriteOnFireBase(userData?userData.id:"",movieId)
-  }
+    handleFavoriteOnFireBase(movieId);
+  };
   const getMovies = async () => {
     const moviesCollection = await collection(db, "movies");
     const movieColumn = await getDocs(moviesCollection);
@@ -121,11 +128,7 @@ function Movies(): JSX.Element {
       <div id="containerMovies">
         <div id="gallaryMovies">
           {updatedMovies?.map((item, index) => (
-            <Movie
-              key={index}
-              {...item}
-              handleFavorite={handleFavorite}
-            />
+            <Movie key={index} {...item} handleFavorite={handleFavorite} />
           ))}
         </div>
       </div>
