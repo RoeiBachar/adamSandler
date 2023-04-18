@@ -26,11 +26,21 @@ function Movies(): JSX.Element {
   const db = getFirestore(app);
   const dispatch = useDispatch();
 
-  const handleFavoriteOnFireBase = async (movieId: string) => {
+  const handleFavoriteOnFireBase = async (
+    movieId: string,
+    isFavorite: boolean
+  ) => {
     if (userData) {
       const userDataClone = { ...userData };
-      const favorites = [...userDataClone.favorites];
-      favorites.push(movieId);
+      let favorites = [...userDataClone.favorites];
+
+      if (isFavorite) {
+        favorites = favorites.filter(
+          (favoriteItemId) => favoriteItemId !== movieId
+        );
+      } else {
+        favorites.push(movieId);
+      }
 
       const updatedUser = {
         ...userDataClone,
@@ -58,10 +68,11 @@ function Movies(): JSX.Element {
       }
       return {
         ...movie,
+        isFavorite: getIsMovieOnFavorites(movie.id),
       };
     });
 
-    handleFavoriteOnFireBase(movieId);
+    handleFavoriteOnFireBase(movieId, isFavorite);
     sessionStorage.setItem("data", JSON.stringify(updatedMovies));
     setUpdatedMovies(updatedMovies);
   };
