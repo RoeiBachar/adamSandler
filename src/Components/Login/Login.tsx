@@ -40,7 +40,6 @@ function Login(): JSX.Element {
     const usersCollection = await collection(db, "users");
     const userColumn = await getDocs(usersCollection);
     const usersDocs = userColumn.docs.map((doc) => doc.data());
-    
 
     const loggedInUser = usersDocs.find((userDoc) => {
       if (
@@ -54,7 +53,6 @@ function Login(): JSX.Element {
           first_name: userDoc.first_name,
           favorites: userDoc.favorites,
         };
-        console.log(userData);
 
         return userData;
       } else {

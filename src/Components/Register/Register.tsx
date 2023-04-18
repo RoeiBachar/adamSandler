@@ -28,13 +28,13 @@ function Register(): JSX.Element {
     const usersCollection = await collection(db, "users");
     const userColumn = await getDocs(usersCollection);
     const usersDocs = userColumn.docs.map((doc) => doc.data());
-    const isUserExist = await getDocs(query(usersCollection, where("username", "==", newData.username)));
+    const isUserExist = await getDocs(
+      query(usersCollection, where("username", "==", newData.username))
+    );
 
-   
     if (isUserExist.empty) {
       try {
         const result = await setDoc(doc(db, "users", id), newData);
-        console.log(result);
         navigate("/");
       } catch (error) {
         console.log(error);

@@ -15,69 +15,90 @@ import {
   where,
 } from "firebase/firestore";
 import { Stack, Autocomplete, TextField } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
+import { updateUserData } from "../../Redux/features/dataSlice";
 
 function Movies(): JSX.Element {
   const [movies, setMovies] = useState<movieInterface[]>([]);
-  const [updatedMovies, setUpdate] = useState<movieInterface[]>();
+  const [updatedMovies, setUpdatedMovies] = useState<movieInterface[]>([]);
   const userData = useSelector((state: RootState) => state.userDataState.user);
-  console.log(userData);
   const db = getFirestore(app);
+  const dispatch = useDispatch();
 
   const handleFavoriteOnFireBase = async (movieId: string) => {
     if (userData) {
-      const userDocRef = doc(db, "users", userData.id);
-      const updatedUserData = { ...userData };
-      const favorites = [...updatedUserData.favorites];
+      const userDataClone = { ...userData };
+      const favorites = [...userDataClone.favorites];
       favorites.push(movieId);
 
+      const updatedUser = {
+        ...userDataClone,
+        favorites,
+      };
+
+      dispatch(updateUserData(updatedUser));
+
       try {
-        await updateDoc(userDocRef, {
-          ...updatedUserData,
-          favorites,
-        });
+        const userDocRef = doc(db, "users", userData.id);
+        await updateDoc(userDocRef, updatedUser);
       } catch (error) {
         console.log(error);
       }
     }
   };
   const handleFavorite = (movieId: string, isFavorite: boolean) => {
-    console.log(`${movieId}:`, isFavorite);
     let updatedMovies = [...movies];
     updatedMovies = updatedMovies.map((movie) => {
       if (movie.id === movieId) {
         return {
           ...movie,
-          isFavorite,
+          isFavorite: !isFavorite,
         };
       }
       return {
         ...movie,
       };
     });
-    setUpdate(updatedMovies as movieInterface[]);
+
     handleFavoriteOnFireBase(movieId);
+    sessionStorage.setItem("data", JSON.stringify(updatedMovies));
+    setUpdatedMovies(updatedMovies);
   };
+
+  const getIsMovieOnFavorites = (movieId: string) => {
+    if (userData) {
+      const isFavorite = userData.favorites.find(
+        (favoriteItemId) => favoriteItemId === movieId
+      );
+      if (isFavorite) {
+        return true;
+      }
+      return false;
+    }
+
+    return false;
+  };
+
   const getMovies = async () => {
     const moviesCollection = await collection(db, "movies");
     const movieColumn = await getDocs(moviesCollection);
     const movies = movieColumn.docs.map((doc) => doc.data());
 
-    const myMovies: movieInterface[] = movies.map((item) => {
+    const myMovies: movieInterface[] = movies.map((movie) => {
       return {
-        title: item.title,
-        imdb: item.imdb,
-        description: item.description,
-        img: item.img,
-        year: item.year,
-        isFavorite: false,
-        id: item.id,
+        title: movie.title,
+        imdb: movie.imdb,
+        description: movie.description,
+        img: movie.img,
+        year: movie.year,
+        isFavorite: getIsMovieOnFavorites(movie.id),
+        id: movie.id,
       };
     });
     myMovies.sort(compareYears);
     sessionStorage.setItem("data", JSON.stringify(myMovies));
-    setUpdate(myMovies);
+    setUpdatedMovies(myMovies);
     setMovies(myMovies);
   };
 
@@ -85,26 +106,26 @@ function Movies(): JSX.Element {
     return b.year - a.year;
   };
   useEffect(() => {
-    window.scrollTo(0, 0);
-    const data = sessionStorage.getItem("data");
+    (async () => {
+      window.scrollTo(0, 0);
+      const data = sessionStorage.getItem("data");
 
-    if (!data) {
-      getMovies();
-    } else {
-      const newData = JSON.parse(data);
-      setUpdate(newData);
-      setMovies(newData);
-    }
+      if (data) {
+        const newData = JSON.parse(data);
+        setUpdatedMovies(newData);
+        setMovies(newData);
+      } else {
+        await getMovies();
+      }
+    })();
   }, []);
 
   const todo = (data: SyntheticEvent) => {
     const movieName = (data.target as HTMLInputElement).textContent;
-    console.log(movieName);
     const newArray = movies?.filter((item) => movieName == item.title);
-    setUpdate(newArray);
-    console.log(newArray);
+    setUpdatedMovies(newArray);
     if (!newArray?.length) {
-      setUpdate(movies);
+      setUpdatedMovies(movies);
     }
   };
 
@@ -127,7 +148,7 @@ function Movies(): JSX.Element {
       </div>
       <div id="containerMovies">
         <div id="gallaryMovies">
-          {updatedMovies?.map((item, index) => (
+          {updatedMovies.map((item, index) => (
             <Movie key={index} {...item} handleFavorite={handleFavorite} />
           ))}
         </div>

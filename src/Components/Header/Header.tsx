@@ -8,7 +8,6 @@ function Header(): JSX.Element {
     (state: RootState) => state.userDataState.user?.first_name
   );
   const navigate = useNavigate();
-  console.log(userDataName);
 
   return (
     <div className="Header">
