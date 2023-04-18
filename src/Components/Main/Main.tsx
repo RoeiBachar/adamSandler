@@ -17,8 +17,7 @@ function Main(): JSX.Element {
     if (!userDataName) {
       navigate("/");
     }
-  }),
-    [];
+  }, []);
 
   return (
     <div className="Main">
