@@ -25,6 +25,7 @@ function Movies(): JSX.Element {
   const userData = useSelector((state: RootState) => state.userDataState.user);
   const db = getFirestore(app);
   const dispatch = useDispatch();
+  const [ChangePage, setChangePage] = useState(true);
 
   const handleFavoriteOnFireBase = async (
     movieId: string,
@@ -116,11 +117,11 @@ function Movies(): JSX.Element {
   const compareYears = (a: movieInterface, b: movieInterface) => {
     return b.year - a.year;
   };
+
   useEffect(() => {
     (async () => {
       window.scrollTo(0, 0);
       const data = sessionStorage.getItem("data");
-
       if (data) {
         const newData = JSON.parse(data);
         setUpdatedMovies(newData);
@@ -131,7 +132,7 @@ function Movies(): JSX.Element {
     })();
   }, []);
 
-  const todo = (data: SyntheticEvent) => {
+  const searchMovie = (data: SyntheticEvent) => {
     const movieName = (data.target as HTMLInputElement).textContent;
     const newArray = movies?.filter((item) => movieName == item.title);
     setUpdatedMovies(newArray);
@@ -140,13 +141,59 @@ function Movies(): JSX.Element {
     }
   };
 
+  const showFavorites = () => {
+    const favoritesUpdated = updatedMovies.filter(
+      (item) => item.isFavorite == true
+    );
+    console.log(favoritesUpdated);
+    if (favoritesUpdated.length > 0) {
+      setUpdatedMovies(favoritesUpdated);
+    }
+   else{
+        setChangePage(true);
+    }
+  };
+
+  const showAllMovies = () => {
+    const data = sessionStorage.getItem("data");
+      if (data) {
+        const newData = JSON.parse(data);
+        setUpdatedMovies(newData);
+      }
+    
+  };
+
+  
+
   return (
     <div className="Movies">
       <div id="searchingContainer">
+        {ChangePage ? (
+          <button
+            type="button"
+            onClick={() => {
+              setChangePage(!ChangePage);
+              showFavorites();
+            }}
+          >
+            Favorites
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => {
+                showAllMovies();
+              setChangePage(!ChangePage);
+            }}
+          >
+            all movies
+          </button>
+        )}
+
         <Stack spacing={2} sx={{ width: 500 }}>
           <Autocomplete
             onChange={(e) => {
-              todo(e);
+              searchMovie(e);
             }}
             id="free-solo-demo"
             freeSolo
