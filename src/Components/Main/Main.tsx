@@ -6,6 +6,7 @@ import Pictures from "../Pictures/Pictures";
 import "./Main.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import Manu from "../Manu/Manu";
 
 function Main(): JSX.Element {
   const userDataName = useSelector(
@@ -21,6 +22,8 @@ function Main(): JSX.Element {
 
   return (
     <div className="Main">
+    <Manu />
+
       <Header />
       <Pictures />
       <Biography />

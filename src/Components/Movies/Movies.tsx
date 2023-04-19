@@ -18,6 +18,7 @@ import { Stack, Autocomplete, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
 import { updateUserData } from "../../Redux/features/dataSlice";
+import Manu from "../Manu/Manu";
 
 function Movies(): JSX.Element {
   const [movies, setMovies] = useState<movieInterface[]>([]);
@@ -148,61 +149,64 @@ function Movies(): JSX.Element {
     console.log(favoritesUpdated);
     if (favoritesUpdated.length > 0) {
       setUpdatedMovies(favoritesUpdated);
-    }
-   else{
-        setChangePage(true);
+    } else {
+      setChangePage(true);
     }
   };
 
   const showAllMovies = () => {
     const data = sessionStorage.getItem("data");
-      if (data) {
-        const newData = JSON.parse(data);
-        setUpdatedMovies(newData);
-      }
-    
+    if (data) {
+      const newData = JSON.parse(data);
+      setUpdatedMovies(newData);
+    }
   };
-
-  
 
   return (
     <div className="Movies">
       <div id="searchingContainer">
-        {ChangePage ? (
-          <button
-            type="button"
-            onClick={() => {
-              setChangePage(!ChangePage);
-              showFavorites();
-            }}
-          >
-            Favorites
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={() => {
-                showAllMovies();
-              setChangePage(!ChangePage);
-            }}
-          >
-            all movies
-          </button>
-        )}
+        <div style={{ zIndex: 1 }}>
+          <Manu />
+        </div>
 
-        <Stack spacing={2} sx={{ width: 500 }}>
-          <Autocomplete
-            onChange={(e) => {
-              searchMovie(e);
-            }}
-            id="free-solo-demo"
-            freeSolo
-            options={movies ? movies.map((option) => option.title) : []}
-            renderInput={(params) => (
-              <TextField {...params} label="Search Movie" />
-            )}
-          />
-        </Stack>
+        <div id="buttonFavOrAll">
+          {ChangePage ? (
+            <button
+              type="button"
+              onClick={() => {
+                setChangePage(!ChangePage);
+                showFavorites();
+              }}
+            >
+              Favorites
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => {
+                showAllMovies();
+                setChangePage(!ChangePage);
+              }}
+            >
+              all movies
+            </button>
+          )}
+        </div>
+        <div id="serachingButton">
+          <Stack spacing={2} sx={{ width: 500 }}>
+            <Autocomplete
+              onChange={(e) => {
+                searchMovie(e);
+              }}
+              id="free-solo-demo"
+              freeSolo
+              options={movies ? movies.map((option) => option.title) : []}
+              renderInput={(params) => (
+                <TextField {...params} label="Search Movie" />
+              )}
+            />
+          </Stack>
+        </div>
       </div>
       <div id="containerMovies">
         <div id="gallaryMovies">
