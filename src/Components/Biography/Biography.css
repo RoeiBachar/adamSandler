@@ -1,60 +1,99 @@
 .Biography {
     margin-top: 50px;
     padding-top: 5px;
-    box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.25);
-    height: 320vh;
-    box-shadow: 15px 5px 5px rgba(0, 0, 0, 0.25);
-
+    height: auto;
+    user-select: none;
+    pointer-events: none;
 }
 
 #bioContainer {
     width: 100%;
-    
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
 }
 
 .bioImage {
     border-radius: 20%;
-    margin-left: 16vh;
-    width: 60vh;
-    height: 60vh;
-    box-shadow: 1px 5px 5px  rgba(220, 188, 5, 0.367);
+    width: 60%;
+    max-width: 60vh;
+    height: auto;
+    box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.25);
     margin-top: 7vh;
 }
 
 #bioImage {
     width: 80%;
-    margin-right: 40px;
-  
+    margin-right: 0;
 }
 
-#bioInfo{
-    width: 50%;
-    margin-left: 10%;
+#bioInfo {
+    margin-top: 5vh;
     font-size: 3vh;
-    
-}
-#bioInfo >h1{
-   color: rgba(220, 188, 5, 0.367);
-    
-}
-.movieImage{
-    display: block;
-    border-radius: 30%;
+    text-align: center;
 }
 
-#bioMovie{
-    position: absolute;
-    top: 85%;
-    left: 55%;
-    transform: translate(-50%, -50%);
+#bioInfo>h1 {
+    color: rgba(220, 188, 5, 0.367);
+}
+
+.movieImage {
+    display: block;
+    border-radius: 50%;
+    max-width: 100%;
+    height: auto;
+}
+
+#bioMovie {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    text-align: center;
     color: black;
-    text-shadow: 1px 1px 1px white(0, 0, 0, 0.4);
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.4);
     background-color: rgba(220, 188, 5, 0.367);
 }
 
-#imageMovieContainer{
-    position: relative;
+#imageMovieContainer {
+    position: static;
+}
 
+@media (max-width: 576px) {
+    .bioImage {
+        margin-top: 3vh;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {
+    .bioImage {
+        margin-top: 5vh;
+    }
+}
+
+@media (min-width: 992px) {
+    .Biography {
+        box-shadow: 15px 5px 5px rgba(0, 0, 0, 0.25);
+    }
+
+    #bioContainer {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .bioImage {
+        margin-top: 0;
+        margin-right: 10vh;
+        order: 2;
+    }
+
+    #bioInfo {
+        margin-top: 0;
+        font-size: 2vh;
+        text-align: left;
+        order: 1;
+    }
 }

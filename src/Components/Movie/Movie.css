@@ -1,11 +1,9 @@
-
 #movieContainer {
     display: flex;
     justify-content: center;
-    width: 60%;
     flex-wrap: wrap;
     margin: auto;
-    padding:10px
+    padding: 10px;
 }
 
 #movieContainer>img {
@@ -15,10 +13,11 @@
     height: 50vh;
 }
 
-#movieContainer:hover #movieInfo{
+#movieContainer:hover #movieInfo {
     display: block;
 }
-#movieContainer:hover img{
+
+#movieContainer:hover img {
     opacity: 20%;
 }
 
@@ -27,14 +26,53 @@
     position: absolute;
     width: 16%;
     height: 50%;
-    color:white;
+    color: white;
     text-align: center;
 }
 
-#movieInfo>p{
+#movieInfo>p {
     font-size: 1.7vh;
     width: 70%;
-
     position: relative;
     width: 100%;
+}
+
+@media (max-width: 768px) {
+    #movieContainer {
+        max-width: 90%;
+    }
+
+    #movieContainer>img {
+        width: 80vw;
+        height: 50vh;
+    }
+
+    #movieInfo {
+        width: 80%;
+        height: 40%;
+    }
+
+    #movieInfo>p {
+        font-size: 1.3vh;
+    }
+}
+
+@media (max-width: 480px) {
+    #movieContainer {
+        max-width: 95%;
+    }
+
+    #movieContainer>img {
+        width: 90vw;
+        height: 40vh;
+    }
+
+    #movieInfo {
+        width: 90%;
+        height: 35%;
+    }
+
+    #movieInfo>p {
+        font-size: 1.1vh;
+    }
 }

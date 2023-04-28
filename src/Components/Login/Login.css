@@ -2,7 +2,7 @@
     background-color: black;
     height: 100vh;
     color: rgba(220, 188, 5, 0.367);
-    font-size: 50px;
+    font-size: 5vw;
     font-weight: bolder;
     text-align: center;
     text-shadow: 1px 1px 1px grey;
@@ -14,27 +14,31 @@
 
 #inputs>form {
     background-color: black;
-    width: 530px;
+    width: 90vw;
+    max-width: 530px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     margin: auto;
-
 }
 
 #inputs>input {
-    width: 50px;
+    width: 50%;
+    max-width: 200px;
     text-decoration: none;
 }
 
 #loginImage {
     background-image: url("https://tiermaker.com/images/templates/scenes-from-click-2006-795430/7954301612003554.png");
-    width: 53vh;
+    width: 60vw;
+    max-width: 53vh;
     height: 33vh;
     background-color: black;
     background-repeat: no-repeat;
+    background-size: cover;
     margin: auto;
-
 }
+
 
 p>a {
     color: rgba(220, 188, 5, 0.367);

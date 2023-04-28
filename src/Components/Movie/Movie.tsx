@@ -8,7 +8,6 @@ import { useState } from "react";
 function Movie(props: movieInterface): JSX.Element {
   const { isFavorite, id } = props;
   const { handleFavorite } = props;
-  const [getFav, setFav] = useState(true);
 
   return (
     <div className="Movie">
@@ -26,9 +25,13 @@ function Movie(props: movieInterface): JSX.Element {
               height={30}
             />
           </span>
-          <div onClick={()=>{handleFavorite && handleFavorite(id, isFavorite)}}>
+          <div
+            onClick={() => {
+              handleFavorite && handleFavorite(id, isFavorite);
+            }}
+          >
             {isFavorite ? (
-              <BookmarkIcon  />
+              <BookmarkIcon />
             ) : (
               <BookmarkBorderIcon fontSize="large" />
             )}

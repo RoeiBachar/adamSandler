@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
 import { updateUserData } from "../../Redux/features/dataSlice";
 import Manu from "../Manu/Manu";
+import { useNavigate } from "react-router-dom";
 
 function Movies(): JSX.Element {
   const [movies, setMovies] = useState<movieInterface[]>([]);
@@ -27,7 +28,13 @@ function Movies(): JSX.Element {
   const db = getFirestore(app);
   const dispatch = useDispatch();
   const [ChangePage, setChangePage] = useState(true);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!userData) {
+      navigate("/");
+    }
+  }, []);
   const handleFavoriteOnFireBase = async (
     movieId: string,
     isFavorite: boolean

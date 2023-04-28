@@ -6,11 +6,26 @@
     font-weight: bolder;
     text-align: center;
     text-shadow: 1px 1px 1px grey;
+}
 
+@media screen and (max-width: 768px) {
+    .Register {
+        font-size: 40px;
+    }
+}
 
+@media screen and (max-width: 576px) {
+    .Register {
+        font-size: 30px;
+    }
 }
 
 #registerContainer {
     border: solid 2px saddlebrown;
+}
 
+@media screen and (max-width: 576px) {
+    #registerContainer {
+        border-width: 1px;
+    }
 }

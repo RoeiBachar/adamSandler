@@ -1,13 +1,11 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
 import "./Header.css";
-import { useNavigate } from "react-router-dom";
 
 function Header(): JSX.Element {
   const userDataName = useSelector(
     (state: RootState) => state.userDataState.user?.first_name
   );
-  const navigate = useNavigate();
 
   return (
     <div className="Header">

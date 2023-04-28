@@ -23,7 +23,6 @@ function Main(): JSX.Element {
   return (
     <div className="Main">
     <Manu />
-
       <Header />
       <Pictures />
       <div id="bio"><Biography /></div>

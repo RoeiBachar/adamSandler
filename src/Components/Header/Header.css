@@ -1,19 +1,18 @@
-.Header {
-}
+.Header {}
 
 #title {
     font-size: 10vh;
     font-weight: bolder;
     text-align: center;
     text-transform: uppercase;
-    color:  rgba(220, 188, 5, 0.367);
+    color: rgba(220, 188, 5, 0.367);
     letter-spacing: 2px;
     margin-top: 50px;
     position: absolute;
     top: 39%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 1px 0px 8px  rgba(220, 188, 5, 0.367);;
+    box-shadow: 1px 0px 8px rgba(220, 188, 5, 0.367);
 }
 
 #container {
@@ -25,4 +24,23 @@
     width: 100%;
     display: block;
     opacity: 20%;
+}
+
+
+@media (max-width: 576px) {
+    #title {
+        font-size: 5vh;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {
+    #title {
+        font-size: 8vh;
+    }
+}
+
+@media (min-width: 992px) {
+    #title {
+        font-size: 10vh;
+    }
 }

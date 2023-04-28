@@ -8,20 +8,40 @@
     width: 25%;
     height: 40vh;
     object-fit: cover;
-    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.25); 
-
-    
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.25);
 }
+
 .images:hover {
-    border-radius: 50%;
-    width: 25%;
-    height: 40vh;
-    object-fit: cover;
     opacity: 75%;
 }
 
 #imageContainer {
-    padding-top:50px;
+    padding-top: 50px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
+}
+
+@media (max-width: 576px) {
+    .images {
+        width: 100%;
+        height: 30vh;
+        margin-bottom: 10px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {
+    .images {
+        width: 50%;
+        height: 50vh;
+        margin-bottom: 20px;
+    }
+}
+
+@media (min-width: 992px) {
+    .images {
+        width: 25%;
+        height: 40vh;
+        margin-bottom: 40px;
+    }
 }
