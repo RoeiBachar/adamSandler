@@ -1,9 +1,13 @@
 .Biography {
-    margin-top: 50px;
+    margin-top: 3px;
+
+    margin-left: 50px;
+
     padding-top: 5px;
     height: auto;
     user-select: none;
     pointer-events: none;
+    direction: rtl;
 }
 
 #bioContainer {
@@ -31,6 +35,7 @@
     margin-top: 5vh;
     font-size: 3vh;
     text-align: center;
+    direction: ltr;
 }
 
 #bioInfo>h1 {
@@ -67,9 +72,20 @@
     }
 }
 
-@media (min-width: 576px) and (max-width: 992px) {
+@media (min-width: 176px) and (max-width: 992px) {
+    #bioImage {
+       display: flex;
+       flex-direction: row;
+       flex-wrap: wrap;
+       justify-content: center;
+       gap: 2%;
+       align-items: center;
+    }
+
+    
     .bioImage {
         margin-top: 5vh;
+        width: 17vh;
     }
 }
 
