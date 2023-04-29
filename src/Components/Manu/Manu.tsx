@@ -11,7 +11,7 @@ function Manu(): JSX.Element {
       <ul>
         <li><Link to="/main">Home</Link></li>
         <li><Link to="/movies">Movies</Link></li>
-        <li><HashLink smooth to="/main#bio">bio</HashLink></li>       
+        <li><HashLink smooth to="/main#bio">Bio</HashLink></li>       
       </ul>
     </nav>
             </div>
