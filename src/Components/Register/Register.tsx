@@ -11,10 +11,10 @@ import {
   getDocs,
   query,
   where,
-  updateDoc,
+  
 } from "@firebase/firestore";
 import { app } from "../../Firebase/firebase";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function Register(): JSX.Element {
   const navigate = useNavigate();

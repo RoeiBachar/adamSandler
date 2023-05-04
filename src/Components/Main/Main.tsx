@@ -24,7 +24,7 @@ function Main(): JSX.Element {
     <div className="Main">
     <Manu />
       <Header />
-      <Pictures />
+     
       <div id="bio"><Biography /></div>
     </div>
   );

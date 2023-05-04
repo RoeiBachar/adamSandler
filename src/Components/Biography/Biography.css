@@ -20,10 +20,10 @@
 .bioImage {
     border-radius: 20%;
     width: 60%;
-    max-width: 60vh;
+    max-width: 60rem;
     height: auto;
     box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.25);
-    margin-top: 7vh;
+    margin-top: 7rem;
 }
 
 #bioImage {
@@ -32,8 +32,8 @@
 }
 
 #bioInfo {
-    margin-top: 5vh;
-    font-size: 3vh;
+    margin-top: 3rem;
+    font-size: 1.5rem;
     text-align: center;
     direction: ltr;
 }
@@ -54,8 +54,8 @@
     top: 0;
     left: 0;
     transform: none;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
     text-align: center;
     color: black;
     text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.4);
@@ -68,24 +68,26 @@
 
 @media (max-width: 576px) {
     .bioImage {
-        margin-top: 3vh;
+        margin-top: 1rem;
     }
 }
 
 @media (min-width: 176px) and (max-width: 992px) {
     #bioImage {
        display: flex;
-       flex-direction: row;
+       flex-direction: column;
        flex-wrap: wrap;
        justify-content: center;
        gap: 2%;
        align-items: center;
     }
-
+    #bioContainer {
+        margin-right: 1.6rem;
+    }
     
     .bioImage {
-        margin-top: 5vh;
-        width: 17vh;
+        margin-top: 5rem;
+        width: 17rem;
     }
 }
 
@@ -102,13 +104,13 @@
 
     .bioImage {
         margin-top: 0;
-        margin-right: 10vh;
+        margin-right: 10rem;
         order: 2;
     }
 
     #bioInfo {
         margin-top: 0;
-        font-size: 2vh;
+        font-size: 2rem;
         text-align: left;
         order: 1;
     }

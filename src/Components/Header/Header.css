@@ -1,7 +1,7 @@
 .Header {}
 
 #title {
-    font-size: 10vh;
+    font-size: 2rem;
     font-weight: bolder;
     text-align: center;
     text-transform: uppercase;
@@ -9,38 +9,48 @@
     letter-spacing: 2px;
     margin-top: 50px;
     position: absolute;
-    top: 39%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 1px 0px 8px rgba(220, 188, 5, 0.367);
 }
 
+#pic{
+    position: relative;
+}
 #container {
     position: relative;
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.25);
+    background-image: url('https://jewishjournal.com/wp-content/uploads/2019/04/adam-sandler.jpg');
+    background-size: cover;
+    padding-bottom: 5rem;
+    
 }
 
-.coverPhoto {
+#container::before {
+    content: "";
+    position: absolute;
     width: 100%;
-    display: block;
-    opacity: 20%;
+    height: 100%;
+    background-color: black;
+    opacity: 70%;
 }
+
+ 
 
 
 @media (max-width: 576px) {
     #title {
-        font-size: 5vh;
+        font-size: 2.4rem;
     }
 }
 
 @media (min-width: 576px) and (max-width: 992px) {
     #title {
-        font-size: 8vh;
+        font-size: 4rem;
     }
 }
 
 @media (min-width: 992px) {
     #title {
-        font-size: 10vh;
+        font-size: 6rem;
     }
 }

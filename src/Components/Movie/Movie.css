@@ -4,13 +4,15 @@
     flex-wrap: wrap;
     margin: auto;
     padding: 10px;
+    max-width: 70rem;
+    max-height: 70rem;
 }
 
 #movieContainer>img {
     position: relative;
     box-shadow: 1px 2px 23px white;
-    width: 35vh;
-    height: 50vh;
+    width: 25rem;
+    height: 40rem;
 }
 
 #movieContainer:hover #movieInfo {
@@ -28,13 +30,34 @@
     height: 50%;
     color: white;
     text-align: center;
+    max-width: 100%;
+    height: 20%;
+   
+    
 }
 
 #movieInfo>p {
-    font-size: 1.7vh;
+    font-size: 1.2rem;
     width: 70%;
     position: relative;
     width: 100%;
+    max-width: 100%;
+    overflow: auto;
+}
+
+@media (max-width: 992px) {
+    #movieContainer {
+        max-width: 80%;
+    }
+
+    #movieContainer>img {
+        width: 20rem;
+        height: 30rem;
+    }
+
+    #movieInfo>p {
+        font-size: 1.6vh;
+    }
 }
 
 @media (max-width: 768px) {
@@ -43,36 +66,35 @@
     }
 
     #movieContainer>img {
-        width: 80vw;
-        height: 50vh;
-    }
-
-    #movieInfo {
-        width: 80%;
-        height: 40%;
+        width: 25rem;
+        height: 30rem;
     }
 
     #movieInfo>p {
-        font-size: 1.3vh;
+        font-size: 1rem;
+    }
+    #movieInfo{
+        width: 65%;
+    overflow: auto;
+
     }
 }
 
 @media (max-width: 480px) {
     #movieContainer {
-        max-width: 95%;
+        max-width: 100%;
     }
 
     #movieContainer>img {
-        width: 90vw;
-        height: 40vh;
-    }
-
-    #movieInfo {
-        width: 90%;
-        height: 35%;
+        width: 20rem;
+        height: 30rem;
     }
 
     #movieInfo>p {
-        font-size: 1.1vh;
+        font-size: 1.1rem;
+    }
+
+    #movieInfo {
+        width: 57%;
     }
 }

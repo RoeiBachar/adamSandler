@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
 import "./Header.css";
+import Pictures from "../Pictures/Pictures";
 
 function Header(): JSX.Element {
   const userDataName = useSelector(
@@ -9,19 +10,24 @@ function Header(): JSX.Element {
 
   return (
     <div className="Header">
+            
       <div id="container">
+  
         <p id="title">{
-        `ADAM SADNLER
-        Hello ${userDataName}`
+        `Hello ${userDataName}`
+        
         }</p>
-
-        <img
+        <div id="pic"> <Pictures /></div>
+       
+        {/* <img
           className="coverPhoto"
           draggable="false"
-          src=" https://jewishjournal.com/wp-content/uploads/2019/04/adam-sandler.jpg"
+          src=""
           width="400"
-        />
+        /> */}
+         
       </div>
+      
     </div>
   );
 }

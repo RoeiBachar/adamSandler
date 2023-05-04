@@ -1,4 +1,3 @@
-import axios from "axios";
 import Movie from "../Movie/Movie";
 import "./Movies.css";
 import { app } from "../../Firebase/firebase";
@@ -6,13 +5,10 @@ import { SyntheticEvent, useEffect, useState } from "react";
 import { movieInterface } from "../../Interfaces/movieInterface";
 import {
   doc,
-  setDoc,
   updateDoc,
   getFirestore,
   collection,
   getDocs,
-  query,
-  where,
 } from "firebase/firestore";
 import { Stack, Autocomplete, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,10 +20,11 @@ import { useNavigate } from "react-router-dom";
 function Movies(): JSX.Element {
   const [movies, setMovies] = useState<movieInterface[]>([]);
   const [updatedMovies, setUpdatedMovies] = useState<movieInterface[]>([]);
+  const [selectedMovie, setSelectedMovie] = useState("");
   const userData = useSelector((state: RootState) => state.userDataState.user);
   const db = getFirestore(app);
   const dispatch = useDispatch();
-  const [ChangePage, setChangePage] = useState(true);
+  const [isFavoritesToggle, setIsFavoritesToggle] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -141,24 +138,26 @@ function Movies(): JSX.Element {
   }, []);
 
   const searchMovie = (data: SyntheticEvent) => {
-    const movieName = (data.target as HTMLInputElement).textContent;
-    const newArray = movies?.filter((item) => movieName == item.title);
-    setUpdatedMovies(newArray);
-    if (!newArray?.length) {
-      setUpdatedMovies(movies);
-    }
+    const movieName = (data.target as HTMLInputElement).textContent as string;
+    const newArray = movies.filter((item) => movieName == item.title);
+
+    // setUpdatedMovies(newArray);
+    setSelectedMovie(movieName);
+    // if (!newArray?.length) {
+    //   setUpdatedMovies(movies);
+    // }
   };
 
   const showFavorites = () => {
-    const favoritesUpdated = updatedMovies.filter(
-      (item) => item.isFavorite == true
-    );
-    console.log(favoritesUpdated);
-    if (favoritesUpdated.length > 0) {
-      setUpdatedMovies(favoritesUpdated);
-    } else {
-      setChangePage(true);
-    }
+    // const favoritesUpdated = updatedMovies.filter(
+    //   (item) => item.isFavorite == true
+    // );
+    // console.log(favoritesUpdated);
+    // if (favoritesUpdated.length > 0) {
+    //   setUpdatedMovies(favoritesUpdated);
+    // } else {
+    //   setIsFavoritesToggle(true);
+    // }
   };
 
   const showAllMovies = () => {
@@ -177,27 +176,14 @@ function Movies(): JSX.Element {
         </div>
 
         <div id="buttonFavOrAll">
-          {ChangePage ? (
-            <button
-              type="button"
-              onClick={() => {
-                setChangePage(!ChangePage);
-                showFavorites();
-              }}
-            >
-              Favorites
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={() => {
-                showAllMovies();
-                setChangePage(!ChangePage);
-              }}
-            >
-              all movies
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={() => {
+              setIsFavoritesToggle(!isFavoritesToggle);
+            }}
+          >
+            {isFavoritesToggle ? "All Movies" : "Favorites"}
+          </button>
         </div>
         <div id="serachingButton">
           <Stack spacing={2} sx={{ width: 500 }}>
@@ -217,9 +203,15 @@ function Movies(): JSX.Element {
       </div>
       <div id="containerMovies">
         <div id="gallaryMovies">
-          {updatedMovies.map((item, index) => (
-            <Movie key={index} {...item} handleFavorite={handleFavorite} />
-          ))}
+          {updatedMovies
+            .map((movie, index) => (
+              <Movie key={index} {...movie} handleFavorite={handleFavorite} />
+            ))
+            .filter((movie) =>
+              isFavoritesToggle
+                ? movie.props.isFavorite
+                : selectedMovie === movie.props.title || selectedMovie === ""
+            )}
         </div>
       </div>
     </div>

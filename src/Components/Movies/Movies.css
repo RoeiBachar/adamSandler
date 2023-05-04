@@ -1,8 +1,8 @@
 .Movies {
-    height: 700vh;
+    min-height: 100rem;
     background-image: url("https://images7.alphacoders.com/818/818954.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     position: relative;
 }
 
@@ -31,18 +31,16 @@
 }
 
 #searchingContainer {
-    display:flex;
- justify-content: center;
- flex-direction: column;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
-  #buttonFavOrAll, #serachingButton{
+#buttonFavOrAll, #serachingButton {
     z-index: 1;
     display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 5px;
-  padding-top: 20px;
-  }
-
-
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    padding-top: 20px;
+}

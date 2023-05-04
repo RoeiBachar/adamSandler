@@ -1,6 +1,6 @@
 .Register {
     background-color: black;
-    height: 100vh;
+    height: 100rem;
     color: rgba(220, 188, 5, 0.367);
     font-size: 50px;
     font-weight: bolder;
@@ -10,22 +10,21 @@
 
 @media screen and (max-width: 768px) {
     .Register {
-        font-size: 40px;
+        font-size: 3rem;
     }
 }
 
 @media screen and (max-width: 576px) {
     .Register {
-        font-size: 30px;
+        font-size: 3rem;
     }
 }
 
 #registerContainer {
     border: solid 2px saddlebrown;
 }
-
-@media screen and (max-width: 576px) {
-    #registerContainer {
-        border-width: 1px;
-    }
+#registerContainer {
+    border-width: 1px;
 }
+
+

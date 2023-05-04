@@ -1,47 +1,69 @@
-.Pictures {
-    background-color: rgba(220, 188, 5, 0.367);
-    margin-bottom: 40px;
-}
-
-.images {
+/* Small screens (mobile devices) */
+@media only screen and (max-width: 767px) {
+    .images {
+      width: 100%;
+      height: 20rem;
+    }
+  }
+  
+  /* Medium screens (tablets) */
+  @media only screen and (min-width: 768px) and (max-width: 1199px) {
+    .images {
+      width: 50%;
+      height: 30rem;
+    }
+  }
+  
+  /* Large screens (desktops) */
+  @media only screen and (min-width: 1200px) {
+    .images {
+      width: 25%;
+      height: 40rem;
+    }
+  }
+  
+  
+  
+  .images {
     border-radius: 50%;
-    width: 25%;
-    height: 40vh;
     object-fit: cover;
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.25);
-}
-
-.images:hover {
-    opacity: 75%;
-}
-
-#imageContainer {
-    padding-top: 50px;
+  }
+  
+  #instegram {
+    background-image: url('https://s.abcnews.com/images/GMA/sandler-aniston-abc-jef-230322_1679498497072_hpMain_16x9_1600.jpg');
+    background-size: cover;
+    transition: background-image 0.3s ease-in-out;
+  }
+  
+  #instegram:hover {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg');
+  }
+  
+  #facebook {
+    background-image: url('https://static.independent.co.uk/s3fs-public/thumbnails/image/2013/08/01/16/sandler-3.jpg?width=1200');
+    background-size: cover;
+    transition: background-image 0.3s ease-in-out;
+  }
+  
+  #facebook:hover {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png');
+  }
+  
+  #twitter {
+    background-image: url('https://media.cnn.com/api/v1/images/stellar/prod/230329161607-02-adam-sandler-jennifer-aniston.jpg?c=4x3');
+    background-size: cover;
+    transition: background-image 0.3s ease-in-out;
+  }
+  
+  #twitter:hover {
+    background-image: url('https://store-images.s-microsoft.com/image/apps.45406.9007199266244427.4d45042b-d7a5-4a83-be66-97779553b24d.2a88a418-b96d-44a6-ad4f-5e0ee6289b2c');
+  }
+  
+  #imageContainer {
+    padding-top: 10rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-}
-
-@media (max-width: 576px) {
-    .images {
-        width: 100%;
-        height: 30vh;
-        margin-bottom: 10px;
-    }
-}
-
-@media (min-width: 576px) and (max-width: 992px) {
-    .images {
-        width: 50%;
-        height: 50vh;
-        margin-bottom: 20px;
-    }
-}
-
-@media (min-width: 992px) {
-    .images {
-        width: 25%;
-        height: 40vh;
-        margin-bottom: 40px;
-    }
-}
+  }
+  

@@ -1,46 +1,65 @@
 .Login {
     background-color: black;
-    height: 110vh;
+    height: 105rem;
     color: rgba(220, 188, 5, 0.367);
-    font-size: 5vw;
+    font-size: 5rem;
     font-weight: bolder;
     text-align: center;
     text-shadow: 1px 1px 1px grey;
-}
-
-#loginContainer {
+  }
+  
+  #loginContainer {
     border: solid 2px saddlebrown;
-}
-
-#inputs>form {
+  }
+  
+  #inputs > form {
     background-color: black;
-    width: 90vw;
-    max-width: 530px;
+    max-width: 50%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin: auto;
-}
-
-#inputs>input {
-    width: 50%;
-    max-width: 200px;
+  }
+  
+  #inputs > input {
+    width: 100%;
+    max-width: 20rem;
     text-decoration: none;
-}
-
-#loginImage {
+    margin: 0.5rem;
+    padding: 0.5rem;
+  }
+  
+  #loginImage {
     background-image: url("https://tiermaker.com/images/templates/scenes-from-click-2006-795430/7954301612003554.png");
-    width: 60vw;
-    max-width: 53vh;
-    height: 33vh;
+    width: 50rem;
+    height: 33rem;
     background-color: black;
     background-repeat: no-repeat;
     background-size: cover;
     margin: auto;
-}
-
-
-p>a {
+  }
+  
+  p > a {
     color: rgba(220, 188, 5, 0.367);
     text-decoration: none;
-}
+  }
+  
+  @media (max-width: 768px) {
+    #inputs > form {
+      max-width: 50%;
+    }
+    #loginImage {
+        background-image: url("https://tiermaker.com/images/templates/scenes-from-click-2006-795430/7954301612003554.png");
+        width: 85%;
+        height: 13rem;
+        background-color: black;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin: auto;
+      }
+    #inputs > input {
+      width: 45%;
+      max-width: none;
+    }
+  }
+  

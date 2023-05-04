@@ -1,6 +1,6 @@
 .AddMovies {
 	background-color: grey;
-    height: 100vh;
+    height: 100rem;
   
     
 }
@@ -9,7 +9,7 @@ form {
     flex-direction: column;
     align-items: center;
     margin-top: 50px;
-    font-size: 60vh;
+    font-size: 60rem;
     padding: 20px;
     background-color: #f2f2f2;
     border-radius: 10px;
@@ -20,20 +20,9 @@ form {
     margin-bottom: 20px;
   }
   
-  label {
-    font-size: 3vh;
-    margin-bottom: 10px;
-  }
   
-  input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-    font-size: 3vh;
-  }
+  
+
   
   input[type="submit"] {
     width: 50%;

@@ -1,12 +1,12 @@
 #manuContainer{
-    height: 6vh;
+    height: 5.5rem;
     display: flex;
     justify-content: center;
     background-color: black;
     opacity: 80%;
 }
 
-nav {
+#manuContainer>nav {
     background-color: black;
     color:white;
 }
@@ -25,7 +25,7 @@ li {
 
 a {
     color: goldenrod;
-    font-size: 50px;
+    font-size: 4rem;
     text-decoration: none;
     padding: 5px;
 }
@@ -34,14 +34,7 @@ a:hover {
     background-color: #ddd;
 }
 
-@keyframes slideInLeft {
-    from {
-        transform: translateX(-500px);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
+ 
 
 @media only screen and (max-width: 768px) {
     #manuContainer{
@@ -65,7 +58,9 @@ a:hover {
     }
     
     a {
-        font-size: 30px;
-        padding: 10px;
+        color: goldenrod;
+        font-size: 1.5rem;
+        text-decoration: none;
+        padding: 5px;
     }
 }
