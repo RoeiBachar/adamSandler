@@ -1,69 +1,54 @@
 .Login {
-    background-color: black;
-    height: 105rem;
-    color: rgba(220, 188, 5, 0.367);
-    font-size: 5rem;
-    font-weight: bolder;
-    text-align: center;
-    text-shadow: 1px 1px 1px grey;
-  }
-  
-  #loginContainer {
-    border: solid 2px saddlebrown;
-  }
-  
-  #inputs > form {
-    background-color: black;
-    max-width: 50%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: auto;
-  }
-  
-  #inputs > input {
-    width: 100%;
-    max-width: 20rem;
-    text-decoration: none;
-    margin: 0.5rem;
-    padding: 0.5rem;
-  }
-  
+  background-color: black;
+  color: rgba(220, 188, 5, 0.367);
+  font-size: 5rem;
+  font-weight: bolder;
+  text-align: center;
+  text-shadow: 1px 1px 1px grey;
+}
+
+#loginContainer {
+  border: solid 2px saddlebrown;
+}
+
+#inputs > form {
+  background-color: black;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#inputs > input {
+}
+
+#loginImage {
+  background-image: url("https://tiermaker.com/images/templates/scenes-from-click-2006-795430/7954301612003554.png");
+  width: 100%;
+  height: 18rem;
+  background-color: black;
+  background-repeat: no-repeat;
+  margin: auto;
+}
+
+p > a {
+  color: rgba(220, 188, 5, 0.367);
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
   #loginImage {
     background-image: url("https://tiermaker.com/images/templates/scenes-from-click-2006-795430/7954301612003554.png");
-    width: 40rem;
-    height: 33rem;
+    width: 100%;
     background-color: black;
     background-repeat: no-repeat;
-    background-size: cover;
-    margin: auto;
+    height: 18rem;
   }
-  
-  p > a {
-    color: rgba(220, 188, 5, 0.367);
-    text-decoration: none;
+  #inputs > input {
+    max-width: none;
   }
-  
-  @media (max-width: 768px) {
-    #inputs > form {
-      max-width: 50%;
-    }
-    #loginImage {
-        background-image: url("https://tiermaker.com/images/templates/scenes-from-click-2006-795430/7954301612003554.png");
-        width: 100%;
-        height: 8rem;
-        background-color: black;
-        background-repeat: no-repeat;
-        background-size: cover;
-        margin: auto;
-      }
-    #inputs > input {
-      width: 45%;
-      max-width: none;
-    }
 
-    #registerNavigate{
-        margin-top: 0;
-    }
+  #registerNavigate {
+    margin-top: 0;
   }
-  
+}

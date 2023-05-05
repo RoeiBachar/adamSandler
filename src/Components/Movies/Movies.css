@@ -1,43 +1,43 @@
 .Movies {
-    min-height: 100rem;
-    position: relative;
+  position: relative;
 }
 
 #containerMovies {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 .Movies::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: 80%;
-    display: flex;
-    justify-content: space-between;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 80%;
+  display: flex;
+  justify-content: space-between;
 }
 
 #gallaryMovies {
-    margin-top: 50px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    width: 85%;
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 85%;
 }
 
 #searchingContainer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
-#buttonFavOrAll, #serachingButton {
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 5px;
-    padding-top: 20px;
+#buttonFavOrAll,
+#serachingButton {
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  padding-top: 20px;
 }

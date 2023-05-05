@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
-import { loginInterface } from "../../Interfaces/loginInterface";
 import { registerInterface } from "../../Interfaces/registerInterface copy";
 import "./Register.css";
 import {
@@ -11,7 +10,7 @@ import {
   getDocs,
   query,
   where,
-  
+
 } from "@firebase/firestore";
 import { app } from "../../Firebase/firebase";
 import { useState } from "react";
@@ -47,14 +46,21 @@ function Register(): JSX.Element {
     <div className="Register">
       <div id="registerContainer">Register</div>
       <div id="inputs">
-        <form onSubmit={handleSubmit(send)}>
+        <form onSubmit={handleSubmit(send)} style={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "center"
+        }}>
           <label>First Name</label>
           <input
             type="string"
             {...register("first_name", { required: true })}
           />
           <label>Username:</label>
-          <h2>{getErr}</h2>
+          {getErr &&
+            <h5>{getErr}</h5>
+          }
           <input type="text" {...register("username", { required: true })} />
           <label>Password</label>
           <input
