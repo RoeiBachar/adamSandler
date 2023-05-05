@@ -1,8 +1,5 @@
 .Movies {
     min-height: 100rem;
-    background-image: url("https://images7.alphacoders.com/818/818954.jpg");
-    background-repeat: no-repeat;
-    background-size: contain;
     position: relative;
 }
 

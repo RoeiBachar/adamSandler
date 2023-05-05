@@ -17,7 +17,6 @@ function Routing(): JSX.Element {
         <Route path="/" element={<Login />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/register" element={<Register />} />
-
         <Route path="*" element={<Main />} />
       </Routes>
     </div>

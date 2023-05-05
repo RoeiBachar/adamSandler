@@ -1,8 +1,6 @@
 .Biography {
     margin-top: 3px;
-
     margin-left: 50px;
-
     padding-top: 5px;
     height: auto;
     user-select: none;
@@ -57,9 +55,11 @@
     margin-top: 5rem;
     margin-bottom: 5rem;
     text-align: center;
-    color: black;
     text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.4);
     background-color: rgba(220, 188, 5, 0.367);
+}
+#bioInfo>p {
+    color:white
 }
 
 #imageMovieContainer {
