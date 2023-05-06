@@ -141,23 +141,7 @@ function Movies(): JSX.Element {
     const movieName = (data.target as HTMLInputElement).textContent as string;
     const newArray = movies.filter((item) => movieName == item.title);
 
-    // setUpdatedMovies(newArray);
     setSelectedMovie(movieName);
-    // if (!newArray?.length) {
-    //   setUpdatedMovies(movies);
-    // }
-  };
-
-  const showFavorites = () => {
-    // const favoritesUpdated = updatedMovies.filter(
-    //   (item) => item.isFavorite == true
-    // );
-    // console.log(favoritesUpdated);
-    // if (favoritesUpdated.length > 0) {
-    //   setUpdatedMovies(favoritesUpdated);
-    // } else {
-    //   setIsFavoritesToggle(true);
-    // }
   };
 
   const showAllMovies = () => {
