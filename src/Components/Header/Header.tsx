@@ -10,24 +10,13 @@ function Header(): JSX.Element {
 
   return (
     <div className="Header">
-            
       <div id="container">
-  
-        <p id="title">{
-        `Hello ${userDataName}`
-        
-        }</p>
-        <div id="pic"> <Pictures /></div>
-       
-        {/* <img
-          className="coverPhoto"
-          draggable="false"
-          src=""
-          width="400"
-        /> */}
-         
+        <p id="title">{`Hello ${userDataName}`}</p>
+        <div id="pic">
+          {" "}
+          <Pictures />
+        </div>
       </div>
-      
     </div>
   );
 }

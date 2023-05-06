@@ -1,4 +1,4 @@
-#manuContainer{
+#manuContainer {
     height: 5.5rem;
     display: flex;
     justify-content: center;
@@ -8,7 +8,7 @@
 
 #manuContainer>nav {
     background-color: black;
-    color:white;
+    color: white;
 }
 
 ul {
@@ -34,16 +34,16 @@ a:hover {
     background-color: #ddd;
 }
 
- 
+
 
 @media only screen and (max-width: 768px) {
-    #manuContainer{
+    #manuContainer {
         height: auto;
         display: block;
         background-color: black;
         opacity: 80%;
     }
-    
+
     ul {
         display: flex;
         flex-direction: column;
@@ -51,12 +51,12 @@ a:hover {
         margin: 0;
         padding: 10px;
     }
-    
+
     li {
         display: block;
         margin: 10px 0;
     }
-    
+
     a {
         color: goldenrod;
         font-size: 1.5rem;

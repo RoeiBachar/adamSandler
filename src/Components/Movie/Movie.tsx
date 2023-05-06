@@ -1,10 +1,8 @@
 import "./Movie.css";
-import firebase from "firebase/app";
 import "firebase/database";
 import { movieInterface } from "../../Interfaces/movieInterface";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import { useState } from "react";
 function Movie(props: movieInterface): JSX.Element {
   const { isFavorite, id } = props;
   const { handleFavorite } = props;

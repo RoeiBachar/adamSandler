@@ -15,7 +15,7 @@ import { loginInterface } from "../../Interfaces/loginInterface";
 import { NavLink, useNavigate } from "react-router-dom";
 import { app } from "../../Firebase/firebase";
 import { useState } from "react";
-import { useDispatch, } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateUserData } from "../../Redux/features/dataSlice";
 import { userInterface } from "../../Interfaces/userInterface";
 
@@ -69,12 +69,15 @@ function Login(): JSX.Element {
     <div className="Login">
       <div id="loginContainer">LOGIN</div>
       <div id="inputs">
-        <form onSubmit={handleSubmit(send)} style={{
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-          alignItems: "center"
-        }}>
+        <form
+          onSubmit={handleSubmit(send)}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <label>Username:</label>
           <input type="text" {...register("username", { required: true })} />
           <label>Password</label>
@@ -82,9 +85,7 @@ function Login(): JSX.Element {
             type="password"
             {...register("password", { required: true })}
           />
-          {getErr &&
-            <h5>{getErr}</h5>
-          }
+          {getErr && <h5>{getErr}</h5>}
           <input id="loginImage" type="submit" value="" />
         </form>
         <p id="registerNavigate">
